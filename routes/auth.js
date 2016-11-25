@@ -46,7 +46,7 @@ router
 
             res
               .status(201)
-              .json({token: token})
+              .json({token: token, role: user.permissions_level > 1 ? "admin" : "user" , id: user._id})
           }else{
             res
               .status(403)

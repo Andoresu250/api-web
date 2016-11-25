@@ -17,6 +17,19 @@ function encryp(text) {
 }
 
 router
+  .get('/:id', function(req,res,next){
+    let _id = req.params.id
+    User.findById(_id)
+    .populate('_organization')
+    .exec(function (err, user) {
+      if(err){
+        if (err) return handleError(err);
+      }
+      res
+        .status(200)
+        .json({user: user})
+    });
+  })
   .post('/', function(req, res, next) {
 
     if(!req.body.user){
@@ -92,6 +105,23 @@ router
         })
       }
   })
-;
+  //.put('/:id', function(req, res, next) {
+
+    /*if(!req.body.user){
+        res
+          .status(403)
+          .json({error: true, message: "Body empty"})
+    }else{
+      let _id = req.params.id; 
+      let _user = req.body.user;
+      console.log(_id);
+      console.log(_user);
+      // User.update(_id, _user);
+      
+      do it guardo el id como guardo el token
+
+    }
+  })
+;*/
 
 module.exports = router;

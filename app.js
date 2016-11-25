@@ -18,6 +18,7 @@ var user = require('./routes/user');
 var auth = require('./routes/auth');
 var user_admin = require('./routes/user_admin');
 var organization = require('./routes/Organization');
+var form = require('./routes/form');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -35,6 +36,7 @@ app.use(auth_middle);
 
 app.use('/users_admin', user_admin);
 app.use('/organizations', organization);
+app.use('/forms', form);
 
 //app.use('/user_admin', user_admin);
 

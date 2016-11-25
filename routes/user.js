@@ -105,23 +105,29 @@ router
         })
       }
   })
-  //.put('/:id', function(req, res, next) {
-
-    /*if(!req.body.user){
+  .put('/:id', function(req, res, next) {
+    if(!req.body.user){
         res
           .status(403)
           .json({error: true, message: "Body empty"})
     }else{
-      let _id = req.params.id; 
+      let _id = req.params.id;
       let _user = req.body.user;
       console.log(_id);
       console.log(_user);
+      User.findByIdAndUpdate(_id,
+        { $set: {username: _user.username, email: _user.email} }, {new: true}, (err, user) => {
+            if(err){
+              res.status(403).json(error:true, message: err)
+            }else{
+              res.status(201).json(user: user)
+            }
+        }
+      })
       // User.update(_id, _user);
-      
-      do it guardo el id como guardo el token
 
     }
   })
-;*/
+;
 
 module.exports = router;

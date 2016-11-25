@@ -10,7 +10,7 @@ router
     let _organization_id = req.params.organization_id
     Organization.findOne({_id: _organization_id})
       .populate('_advanced_form')
-      .exce(function (err, organization) {
+      .exec(function (err, organization) {
         if(err){
           res
             .status(403)

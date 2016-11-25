@@ -23,11 +23,13 @@ router
     .populate('_organization')
     .exec(function (err, user) {
       if(err){
-        if (err) return handleError(err);
-      }
-      res
+        res.status(403).json({error: true, message: err})
+      }else{
+        res
         .status(200)
         .json({user: user})
+      }
+      
     });
   })
   .post('/', function(req, res, next) {

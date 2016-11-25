@@ -43,10 +43,10 @@ router
             let token = jwt.sign(user, config.secret, {
               expiresIn: '24hr'
             })
-
+            
             res
               .status(201)
-              .json({token: token, role: user.permissions_level > 1 ? "admin" : "user" , id: user._id})
+              .json({token: token, role: user.permissions_level > 1 ? "admin" : "user" , id: user._id, organization_id: user._organization})
           }else{
             res
               .status(403)
